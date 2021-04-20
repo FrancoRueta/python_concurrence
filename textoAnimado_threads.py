@@ -1,7 +1,7 @@
 
 #|------------------------------------------------------------|
 #| ACLARACION: Es el mismo codigo de textoAnimado, pero hago  |
-#| la implementacion para printear a distinta velocidad aca.  |
+#| la implementacion de los THREADS aca, de forma separada.   |
 #|------------------------------------------------------------|
 
 #Importa módulos para Interfaz Gráfica de usuario (tkinter)
@@ -9,7 +9,6 @@ import tkinter as tk
 from tkinter import ttk
 import time
 import threading
-
 #Crea la ventana principal
 main_window = tk.Tk()
 main_window.title("Ejemplo")
@@ -39,11 +38,17 @@ def crearAnimacion(a, b, char,retardo=0.25):
         main_window.update()
 
 
-#Ejecuta tres animaciones
-crearAnimacion(10,10, 'X',0.15) #En este caso decidi subir la velocidad
-crearAnimacion(10,30, 'Y') #En este no, y el codigo funciona normalmente
-crearAnimacion(10,50, 'Z',0.05) #Y en este decidi subirla aun mas
+#Creamos los procesos:
+thread_H = threading.Thread(target=crearAnimacion,args=(10,10,'H',0.10),)
+thread_O = threading.Thread(target=crearAnimacion,args=(10,30,'O',0.20),)
+thread_L = threading.Thread(target=crearAnimacion,args=(10,50,'L',0.40),)
+thread_A = threading.Thread(target=crearAnimacion,args=(10,70,'A',0.80),)
 
+#Los ejecutamos:
+thread_H.start()
+thread_O.start()
+thread_L.start()
+thread_A.start()
 
 # Mantener las siguientes líneas siempre al final del script y en el mismo orden.
 #Coloca la opcion "Salir"
