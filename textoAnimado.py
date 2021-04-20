@@ -2,6 +2,7 @@
 import tkinter as tk
 from tkinter import ttk
 import time
+import threading
 
 #Crea la ventana principal
 main_window = tk.Tk()
@@ -20,10 +21,10 @@ def createLabel(a,b):
     return label
 
 #Función que crea una etiqueta (llamando a createLabel()) y luego anima texto dentro de la misma.
-def crearAnimacion(a, b, char):
+def crearAnimacion(a, b, char,retardo=0.25):
     mylabel = createLabel(a,b)
     texto=""
-    retardo: float=0.25
+    #retardo: float=0.25  //variable movida a parametros de la funcion.
     for i in range(0,35):
         time.sleep(retardo)
         texto += char
@@ -31,10 +32,26 @@ def crearAnimacion(a, b, char):
         main_window.update_idletasks()
         main_window.update()
 
+
+
+#Creamos los threads/hilos:
+thread_H = threading.Thread(target=crearAnimacion,args=(10,10,'H',0.10))
+thread_O = threading.Thread(target=crearAnimacion,args=(10,30,'O',0.15))
+thread_L = threading.Thread(target=crearAnimacion,args=(10,50,'L',0.20))
+thread_A = threading.Thread(target=crearAnimacion,args=(10,70,'A',0.25))
+
+#Los ejecutamos:
+thread_H.start()
+thread_O.start()
+thread_L.start()
+thread_A.start()
+
+
+
 #Ejecuta tres animaciones
-crearAnimacion(10,10, 'X')
-crearAnimacion(10,30, 'Y')
-crearAnimacion(10,50, 'Z')
+"""crearAnimacion(10,10, 'X',0.15) #En este caso decidi subir la velocidad
+crearAnimacion(10,30, 'Y') #En este no, y el codigo funciona normalmente
+crearAnimacion(10,50, 'Z',0.05) #Y en este decidi subirla aun mas"""
 
 
 # Mantener las siguientes líneas siempre al final del script y en el mismo orden.
@@ -43,3 +60,5 @@ opcionFinalizar()
 
 #Bucle principal de la ventana
 main_window.mainloop()
+
+
