@@ -40,24 +40,22 @@ def crearAnimacion(a, b, char,retardo=0.25):
         main_window.update_idletasks()
         main_window.update()
 
+
+
 if __name__ == '__main__':
-    animacion_h = multiprocessing.Process(target=crearAnimacion,args=(10,10,'H',0.10,))
-    animacion_o = multiprocessing.Process(target=crearAnimacion,args=(10,30,'O',0.15,))
-    animacion_l = multiprocessing.Process(target=crearAnimacion,args=(10,50,'L',0.20,))
-    animacion_a = multiprocessing.Process(target=crearAnimacion,args=(10,70,'A',0.25,))
+    animacion_h = multiprocessing.Process(target=crearAnimacion,args=(10,10,'H',0.10,),)
+    animacion_o = multiprocessing.Process(target=crearAnimacion,args=(10,30,'O',0.15,),)
+    animacion_l = multiprocessing.Process(target=crearAnimacion,args=(10,50,'L',0.20,),)
+    animacion_a = multiprocessing.Process(target=crearAnimacion,args=(10,70,'A',0.25,),)
+    animacion_h.start()
+    animacion_o.start()
+    animacion_l.start()
+    animacion_a.start()
+    # Mantener las siguientes líneas siempre al final del script y en el mismo orden.
+    #Coloca la opcion "Salir"
+    opcionFinalizar()
 
-
-animacion_h.run()
-animacion_o.run()
-animacion_l.run()
-animacion_a.run()
-
-
-# Mantener las siguientes líneas siempre al final del script y en el mismo orden.
-#Coloca la opcion "Salir"
-opcionFinalizar()
-
-#Bucle principal de la ventana
-main_window.mainloop()
+    #Bucle principal de la ventana
+    main_window.mainloop()
 
 

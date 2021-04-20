@@ -9,6 +9,7 @@ import tkinter as tk
 from tkinter import ttk
 import time
 import threading
+
 #Crea la ventana principal
 main_window = tk.Tk()
 main_window.title("Ejemplo")
